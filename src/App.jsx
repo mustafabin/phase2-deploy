@@ -4,11 +4,14 @@ import './App.css'
 function App() {
   const [comments, setComments] = useState([])
   useEffect(()=>{
-    fetch("http://localhost:3000/comments")
+    fetch("https://raw.githubusercontent.com/mustafabin/phase2-deploy/main/src/db.json")
         .then(res => res.json())
-        .then(data => setComments(data));
+        .then(data =>{
+          // different endpoints as keys of json
+          setComments(data.comments)
+        });
   },[])
-  console.log(comments)
+
   return (
     <div className="App">
         <h1>Comments</h1>
